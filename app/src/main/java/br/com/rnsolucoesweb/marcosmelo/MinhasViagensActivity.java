@@ -2,6 +2,7 @@ package br.com.rnsolucoesweb.marcosmelo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -10,13 +11,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 
 public class MinhasViagensActivity extends AppCompatActivity {
 
-    DatabaseReference myRef;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference viagens2Reference = databaseReference.child("viagens2");
+
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
     ListView lista;
     ArrayList<Viagem> viagens = new ArrayList<Viagem>();
     ArrayAdapter adapter;
@@ -29,35 +34,16 @@ public class MinhasViagensActivity extends AppCompatActivity {
         lista = (ListView) findViewById(R.id.lvViagens);
         adapter = new ViagemAdapter(this, viagens);
         lista.setAdapter(adapter);
-        myRef = FirebaseDatabase.getInstance().getReference();
-        //myRef.child("viagens2").child("EFHCFf8OboaG2rYFtTPtblmWeGU2").child("20180701");
-        myRef.addChildEventListener(new ChildEventListener() {
 
+        // Ler o banco de dados
+        viagens2Reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                viagens.clear();
-//                Viagem value = dataSnapshot.getValue(Viagem.class);
-//                viagens.add(value);
-//                adapter.notifyDataSetChanged();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("FIREBASE", dataSnapshot.getValue().toString());
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError error) {
 
             }
         });
