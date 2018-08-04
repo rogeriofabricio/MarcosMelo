@@ -29,7 +29,7 @@ public class DestinoActivity extends AppCompatActivity {
         messageOrigemR = origem.getString("origem");
 
         // Array of strings...
-        final String[] destinoArray = {"Recife", "Gravatá", "Bezerros", "Caruaru", "Belo Jardim", "Pesqueira", "Arcoverde", "Algodões", "Custódia", "Sítio dos Nunes", "Serra Talhada"};
+        final String[] destinoArray = {"Olinda", "Recife", "Gravatá", "Bezerros", "Caruaru", "Belo Jardim", "Pesqueira", "Arcoverde", "Algodões", "Custódia", "Sítio dos Nunes", "Serra Talhada"};
 
         ArrayAdapter adapterDestino = new ArrayAdapter<String>(this,
                 R.layout.activity_list_view_destino, destinoArray);
