@@ -8,6 +8,8 @@ public class Viagem {
     public String origem;
     public String destino;
 
+    public Viagem() {
+    }
 
     public String getuID() {
         return uID;
@@ -49,11 +51,11 @@ public class Viagem {
         this.destino = destino;
     }
 
-    public Viagem(String uID, String data, String nomeUsuario, String origem, String destino) {
-        this.uID = uID;
-        this.data = data;
-        this.nomeUsuario = nomeUsuario;
-        this.origem = origem;
-        this.destino = destino;
-    }
+//    public Viagem(String uID, String data, String nomeUsuario, String origem, String destino) {
+//        this.uID = uID;
+//        this.data = data;
+//        this.nomeUsuario = nomeUsuario;
+//        this.origem = origem;
+//        this.destino = destino;
+//    }
 }
