@@ -44,6 +44,8 @@ public class GoogleSignInActivity extends BaseActivity implements GoogleApiClien
     private GoogleApiClient mGoogleApiClient;
     private ImageView mImageView;
     private TextView mTextViewProfile;
+    private Button bt_novaViagem;
+    private Button bt_minhasViagens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,12 @@ public class GoogleSignInActivity extends BaseActivity implements GoogleApiClien
 
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+
+        bt_novaViagem = (Button)findViewById(R.id.bt_novaViagem);
+        bt_novaViagem.setVisibility(View.GONE);
+
+        bt_minhasViagens = (Button)findViewById(R.id.bt_minhasViagens);
+        bt_minhasViagens.setVisibility(View.GONE);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -120,8 +128,8 @@ public class GoogleSignInActivity extends BaseActivity implements GoogleApiClien
 
     private void SegueMainActivity(){
 
-        Button bt_novaViagem = (Button)findViewById(R.id.bt_novaViagem);
-
+        //Button bt_novaViagem = (Button)findViewById(R.id.bt_novaViagem);
+        bt_novaViagem.setVisibility(View.VISIBLE);
         bt_novaViagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,8 +140,7 @@ public class GoogleSignInActivity extends BaseActivity implements GoogleApiClien
             }
         });
 
-        Button bt_minhasViagens = (Button)findViewById(R.id.bt_minhasViagens);
-
+        bt_minhasViagens.setVisibility(View.VISIBLE);
         bt_minhasViagens.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +186,9 @@ public class GoogleSignInActivity extends BaseActivity implements GoogleApiClien
         alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                // Esconder os butoes
+                bt_novaViagem.setVisibility(View.GONE);
+                bt_minhasViagens.setVisibility(View.GONE);
                 // Firebase sign out
                 mAuth.signOut();
                 // Google sign out
