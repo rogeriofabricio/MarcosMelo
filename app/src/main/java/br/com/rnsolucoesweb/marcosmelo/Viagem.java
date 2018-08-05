@@ -2,21 +2,21 @@ package br.com.rnsolucoesweb.marcosmelo;
 
 public class Viagem {
 
-    public String uID;
+    public String id;
     public String data;
-    public String nomeUsuario;
     public String origem;
     public String destino;
+
 
     public Viagem() {
     }
 
-    public String getuID() {
-        return uID;
+    public String getId() {
+        return id;
     }
 
-    public void setuID(String uID) {
-        this.uID = uID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getData() {
@@ -25,14 +25,6 @@ public class Viagem {
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
     }
 
     public String getOrigem() {
@@ -50,6 +42,10 @@ public class Viagem {
     public void setDestino(String destino) {
         this.destino = destino;
     }
+
+
+
+
 
 //    public Viagem(String uID, String data, String nomeUsuario, String origem, String destino) {
 //        this.uID = uID;

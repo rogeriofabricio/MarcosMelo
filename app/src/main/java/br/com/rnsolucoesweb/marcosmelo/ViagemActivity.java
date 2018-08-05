@@ -131,7 +131,6 @@ public class ViagemActivity extends AppCompatActivity implements View.OnClickLis
                         dataViagem = String.valueOf(year) + String.valueOf(monthOfYear+1) + String.valueOf(dayOfMonth);
                     }
 
-                    //dataViagem = String.valueOf(dayOfMonth) + String.valueOf(monthOfYear+1) + String.valueOf(year);
                     dataViagem2 = String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear+1) + "/" + String.valueOf(year);
                     dataEscolhida.setText(dataViagem2);
                     //Toast.makeText(ViagemActivity.this, "DATA = " + dataViagem, Toast.LENGTH_SHORT).show();
@@ -150,15 +149,14 @@ public class ViagemActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void SalvarViagem(String uID, String data, String nomeUsuario, String origem, String destino) {
-        Viagens viagens = new Viagens(uID, data, nomeUsuario, origem, destino);
+
+        myRef = mDatabase.child("viagens").child(uID).child(nomeUsuario).child(dataViagem);
+        myRef.child("id").setValue(dataViagem);
+        myRef.child("data").setValue(dataViagem2);
+        myRef.child("origem").setValue(origem);
+        myRef.child("destino").setValue(destino);
 
         Toast.makeText(ViagemActivity.this, "Viagem Salva!", Toast.LENGTH_SHORT).show();
-
-        myRef = mDatabase.child("viagens2").child(uID).child(dataViagem);//.push();
-        myRef.child("data").setValue(dataViagem2);
-        myRef.child("nome").setValue(nomeUsuario);
-        myRef.child("origem").setValue(origem);
-        myRef.child("detino").setValue(destino); //TODO corrigir para destino
 
         Intent intent = new Intent(this, GoogleSignInActivity.class);
         startActivity(intent);
